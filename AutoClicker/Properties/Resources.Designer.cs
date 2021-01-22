@@ -63,9 +63,9 @@ namespace AutoClicker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap close_button_with_a_cross_in_a_circle_318_2658723 {
+        internal static System.Drawing.Bitmap close_button_with_a_cross_in_a_circle_318_26587231 {
             get {
-                object obj = ResourceManager.GetObject("close-button-with-a-cross-in-a-circle_318-2658723", resourceCulture);
+                object obj = ResourceManager.GetObject("close-button-with-a-cross-in-a-circle_318-26587231", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
