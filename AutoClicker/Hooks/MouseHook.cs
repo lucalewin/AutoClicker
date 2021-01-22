@@ -22,6 +22,7 @@
 /// </copyright>
 /// <author>Ramunas Geciauskas</author>
 /// <summary>Contains a MouseHook class for setting up low level Windows mouse hooks.</summary>
+#endregion
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
