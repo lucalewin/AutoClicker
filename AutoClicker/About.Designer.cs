@@ -1,4 +1,6 @@
-﻿
+﻿using AutoClicker.Controls;
+using System.Drawing;
+
 namespace AutoClicker
 {
     partial class About
@@ -33,8 +35,8 @@ namespace AutoClicker
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.lblCopyright = new System.Windows.Forms.Label();
+            this.linkLabelGithubRepo = new System.Windows.Forms.LinkLabel();
+            this.roundedLabelLicense = new AutoClicker.Controls.RoundedLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,6 +69,7 @@ namespace AutoClicker
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(297, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -76,28 +79,33 @@ namespace AutoClicker
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
-            // linkLabel1
+            // linkLabelGithubRepo
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(159)))), ((int)(((byte)(247)))));
-            this.linkLabel1.Location = new System.Drawing.Point(119, 372);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(88, 15);
-            this.linkLabel1.TabIndex = 3;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "View on Github";
-            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabelGithubRepo.AutoSize = true;
+            this.linkLabelGithubRepo.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(159)))), ((int)(((byte)(247)))));
+            this.linkLabelGithubRepo.Location = new System.Drawing.Point(116, 142);
+            this.linkLabelGithubRepo.Name = "linkLabelGithubRepo";
+            this.linkLabelGithubRepo.Size = new System.Drawing.Size(88, 15);
+            this.linkLabelGithubRepo.TabIndex = 3;
+            this.linkLabelGithubRepo.TabStop = true;
+            this.linkLabelGithubRepo.Text = "View on Github";
+            this.linkLabelGithubRepo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabelGithubRepo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelGithubRepo_LinkClicked);
             // 
-            // lblCopyright
+            // roundedLabelLicense
             // 
-            this.lblCopyright.AutoSize = true;
-            this.lblCopyright.ForeColor = System.Drawing.Color.DarkGray;
-            this.lblCopyright.Location = new System.Drawing.Point(60, 407);
-            this.lblCopyright.Name = "lblCopyright";
-            this.lblCopyright.Size = new System.Drawing.Size(220, 15);
-            this.lblCopyright.TabIndex = 4;
-            this.lblCopyright.Text = "© 2021 Luca Lewin. \\nAll Right Reserved";
+            this.roundedLabelLicense.BackColor = System.Drawing.Color.Transparent;
+            this.roundedLabelLicense.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.roundedLabelLicense.CornerRadius = 23;
+            this.roundedLabelLicense.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.roundedLabelLicense.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.roundedLabelLicense.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.roundedLabelLicense.Location = new System.Drawing.Point(43, 409);
+            this.roundedLabelLicense.Name = "roundedLabelLicense";
+            this.roundedLabelLicense.Size = new System.Drawing.Size(240, 32);
+            this.roundedLabelLicense.TabIndex = 5;
+            this.roundedLabelLicense.Text = "Open source license";
+            this.roundedLabelLicense.Click += new System.EventHandler(this.RoundedLabelLicense_Click);
             // 
             // About
             // 
@@ -105,11 +113,12 @@ namespace AutoClicker
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.ClientSize = new System.Drawing.Size(332, 450);
-            this.Controls.Add(this.lblCopyright);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.roundedLabelLicense);
+            this.Controls.Add(this.linkLabelGithubRepo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblTitle);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -128,7 +137,7 @@ namespace AutoClicker
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label lblCopyright;
+        private System.Windows.Forms.LinkLabel linkLabelGithubRepo;
+        private RoundedLabel roundedLabelLicense;
     }
 }
