@@ -12,19 +12,31 @@ namespace AutoClicker
         public About()
         {
             InitializeComponent();
+            if (Themes.CurrentTheme().Equals(Theme.Light))
+            {
+                // Init Light Theme
+            }
+            else
+            {
+                // Init Dark Theme
+            }
             lblVersion.Text = $"Version {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion?.Split("+")[0]}";
-            lblCopyright.Text = "© 2021 Luca Lewin. \nAll Rights Reserved";
-            lblTitle.Location = new Point((ClientSize.Width - lblTitle.Size.Width) / 2, lblTitle.Location.Y);
-            lblVersion.Location = new Point((ClientSize.Width - lblVersion.Size.Width) / 2, lblVersion.Location.Y);
-            linkLabel1.Location = new Point((ClientSize.Width - linkLabel1.Size.Width) / 2, linkLabel1.Location.Y);
-            lblCopyright.Location = new Point((ClientSize.Width - lblCopyright.Size.Width) / 2, lblCopyright.Location.Y);
+            CenterControlHorizontally(lblTitle);
+            CenterControlHorizontally(lblVersion);
+            CenterControlHorizontally(linkLabelGithubRepo);
+            CenterControlHorizontally(roundedLabelLicense);
+        }
+
+        private void CenterControlHorizontally(Control control)
+        {
+            control.Location = new Point((ClientSize.Width - control.Size.Width) / 2, control.Location.Y);
         }
 
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x84)
             {  // Trap WM_NCHITTEST
-                Point pos = new Point(m.LParam.ToInt32());
+                Point pos = new(m.LParam.ToInt32());
                 pos = PointToClient(pos);
                 if (pos.Y < ClientSize.Height)
                 {
@@ -37,12 +49,15 @@ namespace AutoClicker
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
+            Hide();
+            Owner.Show();
             Dispose();
+            Close();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabelGithubRepo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.linkLabel1.LinkVisited = true;
+            linkLabelGithubRepo.LinkVisited = true;
             OpenBrowser("http://github.com/lucalewin/AutoClicker");
         }
 
@@ -50,7 +65,7 @@ namespace AutoClicker
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                Process.Start(new ProcessStartInfo("cmd", $" /c start {url}") { CreateNoWindow = true });
+                Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
@@ -60,6 +75,12 @@ namespace AutoClicker
             {
                 Process.Start("open", url);
             }
+        }
+
+        private void RoundedLabelLicense_Click(object sender, EventArgs e)
+        {
+            //OpenBrowser("http://lucraft.ddns.net/autoclicker/licence");
+            OpenBrowser("https://github.com/lucalewin/AutoClicker/blob/develop/LICENSE");
         }
     }
 }
