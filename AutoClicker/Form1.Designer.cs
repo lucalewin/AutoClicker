@@ -31,34 +31,26 @@ namespace AutoClicker
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkBoxEnable = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemView = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemViewPreferences = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.menuStrip1.SuspendLayout();
+            this.titleBar1 = new AutoClicker.Controls.TitleBar();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblCPS = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // checkBoxEnable
             // 
             this.checkBoxEnable.AutoSize = true;
-            this.checkBoxEnable.Location = new System.Drawing.Point(12, 165);
+            this.checkBoxEnable.Location = new System.Drawing.Point(12, 286);
             this.checkBoxEnable.Name = "checkBoxEnable";
             this.checkBoxEnable.Size = new System.Drawing.Size(147, 19);
             this.checkBoxEnable.TabIndex = 3;
@@ -70,7 +62,7 @@ namespace AutoClicker
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(12, 190);
+            this.checkBox2.Location = new System.Drawing.Point(12, 311);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(108, 19);
             this.checkBox2.TabIndex = 4;
@@ -78,61 +70,32 @@ namespace AutoClicker
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBoxAlwaysFocused_CheckedChanged);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemFile,
-            this.menuItemView,
-            this.menuItemAbout});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(324, 24);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // menuItemFile
-            // 
-            this.menuItemFile.Name = "menuItemFile";
-            this.menuItemFile.Size = new System.Drawing.Size(37, 20);
-            this.menuItemFile.Text = "File";
-            // 
-            // menuItemView
-            // 
-            this.menuItemView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemViewPreferences});
-            this.menuItemView.Name = "menuItemView";
-            this.menuItemView.Size = new System.Drawing.Size(44, 20);
-            this.menuItemView.Text = "View";
-            // 
-            // menuItemViewPreferences
-            // 
-            this.menuItemViewPreferences.Name = "menuItemViewPreferences";
-            this.menuItemViewPreferences.Size = new System.Drawing.Size(135, 22);
-            this.menuItemViewPreferences.Text = "Preferences";
-            // 
-            // menuItemAbout
-            // 
-            this.menuItemAbout.CheckOnClick = true;
-            this.menuItemAbout.Name = "menuItemAbout";
-            this.menuItemAbout.Size = new System.Drawing.Size(52, 20);
-            this.menuItemAbout.Text = "About";
-            // 
             // backgroundWorker1
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(12, 56);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            2,
+            2500,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(167, 23);
             this.numericUpDown1.TabIndex = 6;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
             // 
             // label1
             // 
@@ -147,24 +110,64 @@ namespace AutoClicker
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(13, 86);
+            this.radioButton1.Location = new System.Drawing.Point(0, 0);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(69, 19);
             this.radioButton1.TabIndex = 8;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Seconds";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(88, 86);
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(76, 0);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(91, 19);
             this.radioButton2.TabIndex = 9;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Milliseconds";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
+            // 
+            // titleBar1
+            // 
+            this.titleBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.titleBar1.Location = new System.Drawing.Point(-1, -1);
+            this.titleBar1.Name = "titleBar1";
+            this.titleBar1.Size = new System.Drawing.Size(324, 31);
+            this.titleBar1.TabIndex = 10;
+            this.titleBar1.Title = "Lucraft.AutoClicker";
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Location = new System.Drawing.Point(237, 56);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "About";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // lblCPS
+            // 
+            this.lblCPS.AutoSize = true;
+            this.lblCPS.Location = new System.Drawing.Point(0, 22);
+            this.lblCPS.Name = "lblCPS";
+            this.lblCPS.Size = new System.Drawing.Size(40, 15);
+            this.lblCPS.TabIndex = 12;
+            this.lblCPS.Text = "lblCps";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.lblCPS);
+            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Location = new System.Drawing.Point(12, 85);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 52);
+            this.panel1.TabIndex = 14;
             // 
             // Form1
             // 
@@ -172,41 +175,38 @@ namespace AutoClicker
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.ClientSize = new System.Drawing.Size(324, 459);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.titleBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBoxEnable);
             this.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.TopMost = true;
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.CheckBox checkBoxEnable;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menuItemFile;
-        private System.Windows.Forms.ToolStripMenuItem menuItemView;
-        private System.Windows.Forms.ToolStripMenuItem menuItemAbout;
-        private System.Windows.Forms.ToolStripMenuItem menuItemViewPreferences;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
+        private Controls.TitleBar titleBar1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblCPS;
+        private System.Windows.Forms.Panel panel1;
     }
 }
