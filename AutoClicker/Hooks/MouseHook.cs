@@ -27,7 +27,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace AutoClicker.Hooks
+namespace Lucraft.AutoClicker.Hooks
 {
     /// <summary>
     /// Class for intercepting low level Windows mouse hooks.
@@ -100,10 +100,8 @@ namespace AutoClicker.Hooks
         /// <returns>Hook ID</returns>
         private IntPtr SetHook(MouseHookHandler proc)
         {
-            using (ProcessModule module = Process.GetCurrentProcess().MainModule)
-            {
-                return SetWindowsHookEx(WH_MOUSE_LL, proc, GetModuleHandle(module.ModuleName), 0);
-            }
+            using ProcessModule module = Process.GetCurrentProcess().MainModule;
+            return SetWindowsHookEx(WH_MOUSE_LL, proc, GetModuleHandle(module.ModuleName), 0);
         }
 
         /// <summary>

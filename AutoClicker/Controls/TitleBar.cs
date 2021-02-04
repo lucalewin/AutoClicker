@@ -1,40 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace AutoClicker.Controls
+namespace Lucraft.AutoClicker.Controls
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class TitleBar : UserControl
     {
         protected const int WM_NCLBUTTONDOWN = 0xA1;
         protected const int HT_CAPTION = 0x2;
 
 #pragma warning disable CA1401 // P/Invokes should not be visible
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="Msg"></param>
+        /// <param name="wParam"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 #pragma warning restore CA1401 // P/Invokes should not be visible
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Description("Title for the Titlebar"), Category("Appearance")]
         public string Title {
             get { return lblTitle.Text; }
             set { lblTitle.Text = value; } 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TitleBar()
         {
             InitializeComponent();
-            pictureBox1.Size = new Size(Size.Height, Size.Height);
+            //pictureBox1.Size = new Size(Size.Height, Size.Height);
+            lblTitle.ForeColor = ForeColor;
         }
 
-        private void Form1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MoveForm(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -43,10 +67,11 @@ namespace AutoClicker.Controls
             }
         }
 
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-            Parent.Dispose();
-            Dispose();
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CloseImg_Click(object sender, EventArgs e) => Parent.Dispose();
     }
 }

@@ -1,7 +1,7 @@
-﻿using AutoClicker.Controls;
+﻿using Lucraft.AutoClicker.Controls;
 using System.Drawing;
 
-namespace AutoClicker
+namespace Lucraft.AutoClicker
 {
     partial class About
     {
@@ -36,7 +36,7 @@ namespace AutoClicker
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabelGithubRepo = new System.Windows.Forms.LinkLabel();
-            this.roundedLabelLicense = new AutoClicker.Controls.RoundedLabel();
+            this.roundedLabelLicense = new Lucraft.AutoClicker.Controls.RoundedLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,7 +100,7 @@ namespace AutoClicker
             this.roundedLabelLicense.Cursor = System.Windows.Forms.Cursors.Hand;
             this.roundedLabelLicense.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
             this.roundedLabelLicense.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.roundedLabelLicense.Location = new System.Drawing.Point(43, 409);
+            this.roundedLabelLicense.Location = new System.Drawing.Point(43, 397);
             this.roundedLabelLicense.Name = "roundedLabelLicense";
             this.roundedLabelLicense.Size = new System.Drawing.Size(240, 32);
             this.roundedLabelLicense.TabIndex = 5;

@@ -22,12 +22,14 @@
 /// </copyright>
 /// <author>Ramunas Geciauskas</author>
 /// <summary>Low level Windows keyboard hook class</summary>
+/// 
+/// Modified by Luca Lewin 2021
 #endregion
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace AutoClicker.Hooks
+namespace Lucraft.AutoClicker.Hooks
 {
     public class KeyboardHook
     {
@@ -57,12 +59,12 @@ namespace AutoClicker.Hooks
             PAUSE = 0x13,       // PAUSE key
             CAPITAL = 0x14,     // CAPS LOCK key
             KANA = 0x15,        // Input Method Editor (IME) Kana mode
-            HANGUL = 0x15,      // IME Hangul mode
+            HANGUL = 0x16,      // IME Hangul mode
             //                  0x16,  // Undefined
             JUNJA = 0x17,       // IME Junja mode
             FINAL = 0x18,       // IME final mode
             HANJA = 0x19,       // IME Hanja mode
-            KANJI = 0x19,       // IME Kanji mode
+            KANJI = 0x1A,       // IME Kanji mode
             //                  0x1A,  // Undefined
             ESCAPE = 0x1B,      // ESC key
             CONVERT = 0x1C,     // IME convert
@@ -282,10 +284,10 @@ namespace AutoClicker.Hooks
         /// </summary>
         /// <param name="proc">Callback function</param>
         /// <returns>Hook ID</returns>
-        private IntPtr SetHook(KeyboardHookHandler proc)
+        private static IntPtr SetHook(KeyboardHookHandler proc)
         {
-            using (ProcessModule module = Process.GetCurrentProcess().MainModule)
-                return SetWindowsHookEx(13, proc, GetModuleHandle(module.ModuleName), 0);
+            using ProcessModule module = Process.GetCurrentProcess().MainModule;
+            return SetWindowsHookEx(13, proc, GetModuleHandle(module.ModuleName), 0);
         }
 
         /// <summary>
@@ -297,12 +299,10 @@ namespace AutoClicker.Hooks
             {
                 int iwParam = wParam.ToInt32();
 
-                if ((iwParam == WM_KEYDOWN || iwParam == WM_SYSKEYDOWN))
-                    if (KeyDown != null)
-                        KeyDown((VKeys)Marshal.ReadInt32(lParam));
-                if ((iwParam == WM_KEYUP || iwParam == WM_SYSKEYUP))
-                    if (KeyUp != null)
-                        KeyUp((VKeys)Marshal.ReadInt32(lParam));
+                if (iwParam == WM_KEYDOWN || iwParam == WM_SYSKEYDOWN)
+                    KeyDown?.Invoke((VKeys)Marshal.ReadInt32(lParam));
+                if (iwParam == WM_KEYUP || iwParam == WM_SYSKEYUP)
+                    KeyUp?.Invoke((VKeys)Marshal.ReadInt32(lParam));
             }
 
             return CallNextHookEx(hookID, nCode, wParam, lParam);
@@ -335,7 +335,7 @@ namespace AutoClicker.Hooks
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
         #endregion
     }

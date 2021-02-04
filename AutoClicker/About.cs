@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace AutoClicker
+namespace Lucraft.AutoClicker
 {
     public partial class About : Form
     {

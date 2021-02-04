@@ -1,5 +1,5 @@
 ﻿
-namespace AutoClicker.Controls
+namespace Lucraft.AutoClicker.Controls
 {
     partial class TitleBar
     {
@@ -37,8 +37,8 @@ namespace AutoClicker.Controls
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(402, 0);
             this.pictureBox1.Name = "pictureBox1";
@@ -46,19 +46,20 @@ namespace AutoClicker.Controls
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.CloseImg_Click);
             // 
             // lblTitle
             // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblTitle.ForeColor = System.Drawing.Color.LightGray;
-            this.lblTitle.Location = new System.Drawing.Point(24, 0);
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(117, 20);
+            this.lblTitle.Size = new System.Drawing.Size(86, 15);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Lucraft Titlebar";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MoveForm);
             // 
             // TitleBar
             // 
@@ -69,9 +70,10 @@ namespace AutoClicker.Controls
             this.Controls.Add(this.pictureBox1);
             this.Name = "TitleBar";
             this.Size = new System.Drawing.Size(422, 20);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MoveForm);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

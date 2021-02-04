@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace AutoClicker
+namespace Lucraft.AutoClicker
 {
     public static class Program
     {
